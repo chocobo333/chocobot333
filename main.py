@@ -4,7 +4,6 @@ import discord
 import asyncio
 
 DISCORD_TOKEN = settings.DISCORD_TOKEN
-print(DISCORD_TOKEN)
 
 client = discord.Client()
 
