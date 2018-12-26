@@ -1,8 +1,9 @@
 import os
-from os.path import join, dirname
+from os.path import join, dirname, exists
 from dotenv import load_dotenv
 
 dotenv_path = join(dirname(__file__),".env")
-load_dotenv(dotenv_path)
+if exists(dotenv_path):
+    load_dotenv(dotenv_path)
 
-DISCORD_TOKEN = str(os.environ.get("DISCORD_TOKEN"))
+DISCORD_TOKEN = os.environ.get("DISCORD_TOKEN")
