@@ -1,21 +1,19 @@
 
 import settings
-import discord
 import asyncio
-from discord.ext import commands
+import discord
 
 DISCORD_TOKEN = settings.DISCORD_TOKEN
 
-client = discord.Client()
+class BotClient(discord.Client):
+    async def on_ready(self):
+        print("logged in")
+        print(self.user.name)
+        print(self.user.id)
 
-@client.event
-async def on_ready():
-    print("logged in")
+    async def on_message(self,message):
+        if message.content.startswith("/neko"):
+            await message.channel.send("awewewewe")
 
-@client.event
-async def on_message(message:discord.message):
-    if message.content.startswith("/neko"):
-        reply = "awewewewe"
-        await client.send_message(message.channel,reply)
-
+client = BotClient()
 client.run(DISCORD_TOKEN)
