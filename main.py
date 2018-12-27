@@ -3,7 +3,7 @@ import settings
 import asyncio
 import discord
 from discord.ext import commands
-import traceback
+from traceback import print_exc
 
 DISCORD_TOKEN = settings.DISCORD_TOKEN
 
@@ -17,7 +17,7 @@ class BotClient(commands.Bot):
             try:
                 self.load_extension(cog)
             except Exception:
-                traceback.print_exc()
+                print_exc()
 
     async def on_ready(self):
         print("logged in")
@@ -28,10 +28,10 @@ class BotClient(commands.Bot):
         if message.author.bot:
             return
 
-        if message.content.startswith("/neko"):
-            await message.channel.send("awewewewe")
-
         await self.process_commands(message)
+
+    # async def on_command_error(self,ctx,error):
+    #     await ctx.send(str(error))
 
 
 client = BotClient(command_prefix="!")
